@@ -1,0 +1,2 @@
+ALTER TABLE conversion_rate
+  ALTER COLUMN id VARCHAR(255);

@@ -13,10 +13,10 @@ class ConversionRateService(
     override fun save(conversionRate: ConversionRate): ConversionRate =
         this.conversionRateRepository.save(conversionRate)
 
-    override fun findById(id: Long): ConversionRate =
+    override fun findById(id: String): ConversionRate =
         this.conversionRateRepository.findById(id).orElseThrow {
             throw RuntimeException("Id $id not found.")
         }
 
-    override fun delete(id: Long) = this.conversionRateRepository.deleteById(id)
+    override fun delete(id: String) = this.conversionRateRepository.deleteById(id)
 }

@@ -7,5 +7,5 @@ import java.math.BigDecimal
 data class ConversionRate(
     @Column(nullable = false, unique = true) @Embedded val toCurrency: Currency = Currency(),
     @Column(nullable = false) var rate: BigDecimal = BigDecimal.ZERO,
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null
+    @Id val id: String = toCurrency.code
 )
