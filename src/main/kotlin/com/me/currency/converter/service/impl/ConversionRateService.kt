@@ -18,5 +18,8 @@ class ConversionRateService(
             throw RuntimeException("Id $id not found.")
         }
 
-    override fun delete(id: String) = this.conversionRateRepository.deleteById(id)
+    override fun delete(id: String){
+        val conversionRate: ConversionRate = this.findById(id)
+        this.conversionRateRepository.delete(conversionRate)
+    }
 }
