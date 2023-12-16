@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/save_all_currencies")
+@RequestMapping("/api/v1/save_all_currencies")
 class ConversionRatesController(
     private val conversionRatesService: ConversionRatesService,
     private val conversionRateService: ConversionRateService
