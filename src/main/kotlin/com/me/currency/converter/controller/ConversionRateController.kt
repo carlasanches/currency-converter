@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/conversion_rates")
+@RequestMapping("/api/v1/conversion_rates")
 class ConversionRateController(
     private val conversionRateService: ConversionRateService
 ) {
