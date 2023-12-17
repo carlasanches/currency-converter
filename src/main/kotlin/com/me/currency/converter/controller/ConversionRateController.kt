@@ -5,6 +5,8 @@ import com.me.currency.converter.dto.ConversionRateUpdateDto
 import com.me.currency.converter.dto.ConversionRateView
 import com.me.currency.converter.entity.ConversionRate
 import com.me.currency.converter.service.impl.ConversionRateService
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -15,10 +17,15 @@ class ConversionRateController(
     private val conversionRateService: ConversionRateService
 ) {
 
+    private val logger: Logger = LogManager.getLogger(ConversionRateController::class.java)
+
     @PostMapping
     fun saveConversionRate(@RequestBody conversionRateDto: ConversionRateDto): ResponseEntity<String> {
         val savedCurrency = this.conversionRateService.save(conversionRateDto.toEntity())
-        return ResponseEntity.status(HttpStatus.CREATED).body("Currency ${savedCurrency.toCurrency.name} saved!")
+        val response =
+            ResponseEntity.status(HttpStatus.CREATED).body("Currency ${savedCurrency.toCurrency.name} saved!")
+        logger.info("saveConversionRate method response: $response")
+        return response
     }
 
     @GetMapping("/{id}")
@@ -26,7 +33,9 @@ class ConversionRateController(
         val conversionRate: ConversionRate = this.conversionRateService.findById(id)
         val conversionRateView = ConversionRateView(conversionRate)
 
-        return ResponseEntity.status(HttpStatus.OK).body(conversionRateView)
+        val response = ResponseEntity.status(HttpStatus.OK).body(conversionRateView)
+        logger.info("findById method response: $response")
+        return response
     }
 
     @DeleteMapping("/{id}")
@@ -41,6 +50,8 @@ class ConversionRateController(
         val conversionToUpdate: ConversionRate = conversionRateUpdateDto.toEntity(conversionRate)
         val conversionUpdated: ConversionRate = this.conversionRateService.save(conversionToUpdate)
 
-        return ResponseEntity.status(HttpStatus.OK).body(ConversionRateView(conversionUpdated))
+        val response = ResponseEntity.status(HttpStatus.OK).body(ConversionRateView(conversionUpdated))
+        logger.info("updateConversionRate method response: $response")
+        return response
     }
 }
