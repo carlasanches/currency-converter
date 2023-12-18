@@ -1,0 +1,26 @@
+schema-version: v2
+kind: manifest
+metadata:
+  name: currency-converter-app
+  description: An app for currency conversion.
+  starter: 
+    carlasanches/my-coding-studio/kotlin-spring-stack@1.0.0/kotlin-spring-template-starter
+  stack: kotlin-spring-stack@1.0.0
+spec:
+  type: app
+  plugins:
+    - name: my-coding-studio/spring-kotlin-template@0.0.1
+      alias: spring-kotlin-template-1702859179453
+      type: app
+      inputs:
+        resource: Client
+        method: GET
+      inputs-envs: {}
+      connections:
+        generates: []
+        requires: []
+      links:
+        generates: []
+  global-inputs: {}
+  global-computed-inputs: {}
+  repository: git@github.com:carlasanches/currency-converter.git
