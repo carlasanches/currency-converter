@@ -1,0 +1,1 @@
+ALTER TABLE conversion_rate ALTER COLUMN rate DECIMAL(255, 5);
