@@ -21,7 +21,7 @@ Configutation:
       AppenderRef:
         - ref: Console_Appender
     Logger:
-      - name: me.app.log4j2yaml
+      - name: me.currencyconverter.log4j2yaml
         level: info
         AppenderRef:
           - ref: File_Appender

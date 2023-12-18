@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:app_db
+    url: jdbc:h2:mem:currency_converter_db
     username: admin
   jpa:
     show-sql: true
