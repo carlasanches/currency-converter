@@ -1,0 +1,1 @@
+ALTER TABLE conversion_rate ADD CONSTRAINT uc_currency_code UNIQUE (code);
