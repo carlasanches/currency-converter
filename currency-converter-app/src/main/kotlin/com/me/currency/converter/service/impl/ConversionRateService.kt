@@ -4,7 +4,7 @@ import com.me.currency.converter.entity.ConversionRate
 import com.me.currency.converter.repository.ConversionRateRepository
 import com.me.currency.converter.service.IConversionRateService
 import org.springframework.stereotype.Service
-import java.lang.RuntimeException
+import com.me.currency.converter.exception.BusinessException
 
 @Service
 class ConversionRateService(
@@ -15,7 +15,7 @@ class ConversionRateService(
 
     override fun findById(id: String): ConversionRate =
         this.conversionRateRepository.findById(id).orElseThrow {
-            throw RuntimeException("Id $id not found.")
+            throw BusinessException("Id $id not found.")
         }
 
     override fun delete(id: String){

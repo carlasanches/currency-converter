@@ -5,6 +5,7 @@ import com.me.currency.converter.dto.ConversionRateUpdateDto
 import com.me.currency.converter.dto.ConversionRateView
 import com.me.currency.converter.entity.ConversionRate
 import com.me.currency.converter.service.impl.ConversionRateService
+import jakarta.validation.Valid
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.springframework.http.HttpStatus
@@ -20,7 +21,7 @@ class ConversionRateController(
     private val logger: Logger = LogManager.getLogger(ConversionRateController::class.java)
 
     @PostMapping
-    fun saveConversionRate(@RequestBody conversionRateDto: ConversionRateDto): ResponseEntity<String> {
+    fun saveConversionRate(@RequestBody @Valid conversionRateDto: ConversionRateDto): ResponseEntity<String> {
         val savedCurrency = this.conversionRateService.save(conversionRateDto.toEntity())
         val response =
             ResponseEntity.status(HttpStatus.CREATED).body("Currency ${savedCurrency.toCurrency.name} saved!")
@@ -39,12 +40,13 @@ class ConversionRateController(
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deleteConversionRate(@PathVariable id: String) = this.conversionRateService.delete(id)
 
     @PatchMapping("/{id}")
     fun updateConversionRate(
         @PathVariable id: String,
-        @RequestBody conversionRateUpdateDto: ConversionRateUpdateDto
+        @RequestBody @Valid conversionRateUpdateDto: ConversionRateUpdateDto
     ): ResponseEntity<ConversionRateView> {
         val conversionRate: ConversionRate = this.conversionRateService.findById(id)
         val conversionToUpdate: ConversionRate = conversionRateUpdateDto.toEntity(conversionRate)
